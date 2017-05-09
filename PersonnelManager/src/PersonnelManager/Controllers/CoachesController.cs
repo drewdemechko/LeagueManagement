@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNet.Mvc;
-using PersonnelManager.Models;
 using PersonnelManager.Services.Contracts;
-using System.Collections.Generic;
 
 namespace PersonnelManager.Controllers
 {

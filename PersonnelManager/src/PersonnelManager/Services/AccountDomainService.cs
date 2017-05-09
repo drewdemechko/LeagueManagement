@@ -26,10 +26,7 @@ namespace PersonnelManager.Services
         }
 
         public Account Delete(Account Account)
-        {
-            //first - delete all account types associated with account to be deleted
-            //DeleteAssociatedAccountTypes(Account);
-                       
+        {                       
             database.Account.Remove(Account);
             database.SaveChanges();
             return Account;
@@ -67,22 +64,14 @@ namespace PersonnelManager.Services
 
         public Account Login(string username, string hashedPassword)
         {
+            //always hash password on client before sending to server. Never read unhashed password.
             throw new NotImplementedException();
         }
 
         public static bool isValidUsername(string username)
         {
+            //valid username violations
             return true;
-        }
-
-        public static bool isValidPassword(string unhashedPassword)
-        {
-            return true;
-        }
-
-        public static string hashedPassword(string unhashedPassword)
-        {
-            return "";
         }
 
         private static bool areEqual(Account a, Account b)
