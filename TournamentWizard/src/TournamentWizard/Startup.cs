@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Glimpse;
 using Microsoft.Extensions.Logging;
+using TournamentWizard.Models;
 
 namespace TournamentWizard
 {
