@@ -35,6 +35,10 @@ namespace TournamentWizard.Models
         }
 
         //Entities in database
-        //public DbSet<Account> Account { get; set; } //All entities have an account
+        public DbSet<League> League { get; set; }
+        public DbSet<LeagueTournament> LeagueTournament { get; set; }
+        public DbSet<LeagueCompetitor> LeagueCompetitor { get; set; }
+        public DbSet<LeagueTeam> LeagueTeam { get; set; }
+        public DbSet<LeagueTournamentLines> LeagueTournamentLines { get; set; }
     }
 }

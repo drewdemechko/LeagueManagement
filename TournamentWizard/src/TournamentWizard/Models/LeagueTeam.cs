@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace TournamentWizard.Models
 {
-    public class Tournament
+    public class LeagueTeam
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool IsEvent { get; set; }
-        public bool HasCompetitorsFromLeague { get; set; }
+        public string Nickname { get; set; }
     }
 }

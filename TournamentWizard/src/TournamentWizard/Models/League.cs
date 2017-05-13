@@ -12,5 +12,6 @@ namespace TournamentWizard.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Abbreviation { get; set; }
+        public virtual ICollection<LeagueTeam> Teams { get; set; }
     }
 }

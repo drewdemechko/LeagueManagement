@@ -10,6 +10,6 @@ namespace TournamentWizard.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public virtual LeagueTeam Team { get; set; }
     }
 }

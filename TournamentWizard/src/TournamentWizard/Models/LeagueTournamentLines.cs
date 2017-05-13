@@ -10,8 +10,7 @@ namespace TournamentWizard.Models
     {
         [Key]
         public int Id { get; set; }
-        public int lineNumber { get; set; }
+        public int LineNumber { get; set; }
         public virtual LeagueCompetitor Competitor { get; set; }
-        public virtual LeagueTournament Tournament { get; set; }
     }
 }
