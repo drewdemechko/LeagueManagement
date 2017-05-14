@@ -31,7 +31,6 @@ namespace TournamentWizard.Services
             database.League.Remove(league);
             database.SaveChanges();
             return league;
-
         }
 
         public List<League> Get()

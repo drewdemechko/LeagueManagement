@@ -11,5 +11,6 @@ namespace TournamentWizard.Models
         [Key]
         public int Id { get; set; }
         public virtual LeagueTeam Team { get; set; }
+        public virtual LeagueTournament Tournament { get; set; }
     }
 }

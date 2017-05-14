@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,24 +10,47 @@ namespace TournamentWizard.Services
 {
     public class TeamService : ITeamService
     {
-        public LeagueTeam Add(LeagueTeam team)
+        private AppDbContext database;
+        private List<LeagueTeam> teams;
+
+        public TeamService()
         {
-            throw new NotImplementedException();
+            database = new AppDbContext();
+            teams = database.LeagueTeam.Include(t => t.League).AsNoTracking().ToList();
         }
 
-        public LeagueTeam Delete(int id)
+        public LeagueTeam Add(LeagueTeam team)
         {
-            throw new NotImplementedException();
+            database.LeagueTeam.Add(team);
+            database.SaveChanges();
+            return team;
+        }
+
+        public LeagueTeam Delete(LeagueTeam team)
+        {
+            database.LeagueTeam.Remove(team);
+            database.SaveChanges();
+            return team;
         }
 
         public List<LeagueTeam> Get()
         {
-            throw new NotImplementedException();
+            return teams;
         }
 
-        public List<LeagueTeam> GetFromLeague(string leagueName)
+        public LeagueTeam Get(int id)
         {
-            throw new NotImplementedException();
+            return teams.Where(t => t.Id == id).FirstOrDefault();
+        }
+
+        public LeagueTeam Get(string name, int leagueId)
+        {
+            return teams.Where(t => t.Name == name && t.League.Id == leagueId).FirstOrDefault();
+        }
+
+        public List<LeagueTeam> GetFromLeague(int leagueId)
+        {
+            return teams.Where(t => t.League.Id == leagueId).ToList();
         }
     }
 }

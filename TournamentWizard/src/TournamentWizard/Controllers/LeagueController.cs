@@ -13,10 +13,12 @@ namespace TournamentWizard.Controllers
     public class LeagueController : Controller
     {
         private ILeagueService _leagueService;
+        private ITeamService _teamService;
 
-        public LeagueController(ILeagueService leagueService)
+        public LeagueController(ILeagueService leagueService, ITeamService teamService)
         {
             _leagueService = leagueService;
+            _teamService = teamService;
         }
 
         [HttpGet]
@@ -50,6 +52,33 @@ namespace TournamentWizard.Controllers
             }
 
             return new JsonResult(league);
+        }
+
+        [HttpGet]
+        [Route("{leagueId}/Teams")]
+        public ActionResult GetTeams(int leagueId)
+        {
+            //not a valid id, should only allow integer values
+            if (leagueId == 0)
+            {
+                return HttpBadRequest("Teams could not be retreived. League id:" + leagueId + " is not a valid league id.");
+            }
+
+            var league = _leagueService.Get(leagueId);
+
+            if (league == null)
+            {
+                return HttpNotFound("No league exists with id:" + leagueId + ".");
+            }
+
+            var teams = _teamService.GetFromLeague(leagueId);
+
+            if (teams == null)
+            {
+                return HttpNotFound("No teams exist with the league id:" + leagueId + ".");
+            }
+
+            return new JsonResult(teams);
         }
 
         [HttpPost]

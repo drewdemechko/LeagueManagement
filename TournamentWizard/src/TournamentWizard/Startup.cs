@@ -45,6 +45,7 @@ namespace TournamentWizard
 
             services.AddScoped<ILeagueTournamentService, LeagueTournamentService>();
             services.AddScoped<ILeagueService, LeagueService>();
+            services.AddScoped<ITeamService, TeamService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

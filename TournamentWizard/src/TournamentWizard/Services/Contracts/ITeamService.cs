@@ -6,11 +6,13 @@ using TournamentWizard.Models;
 
 namespace TournamentWizard.Services.Contracts
 {
-    interface ITeamService
+    public interface ITeamService
     {
         List<LeagueTeam> Get();
-        List<LeagueTeam> GetFromLeague(string leagueName);
+        LeagueTeam Get(int id);
+        LeagueTeam Get(string name, int leagueId);
+        List<LeagueTeam> GetFromLeague(int leagueId);
         LeagueTeam Add(LeagueTeam team);
-        LeagueTeam Delete(int id);
+        LeagueTeam Delete(LeagueTeam team);
     }
 }
