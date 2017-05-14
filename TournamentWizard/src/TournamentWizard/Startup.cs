@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Glimpse;
 using Microsoft.Extensions.Logging;
 using TournamentWizard.Models;
+using TournamentWizard.Services.Contracts;
+using TournamentWizard.Services;
 
 namespace TournamentWizard
 {
@@ -41,7 +43,8 @@ namespace TournamentWizard
             services.AddGlimpse();
             services.AddMvc();
 
-            //services.AddScoped<IAccountDomainService, AccountDomainService>();
+            services.AddScoped<ILeagueTournamentService, LeagueTournamentService>();
+            services.AddScoped<ILeagueService, LeagueService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
