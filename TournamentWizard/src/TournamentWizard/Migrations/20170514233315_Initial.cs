@@ -67,22 +67,22 @@ namespace TournamentWizard.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LeagueTournamentId = table.Column<int>(nullable: true),
-                    TeamId = table.Column<int>(nullable: true)
+                    TeamId = table.Column<int>(nullable: true),
+                    TournamentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LeagueCompetitor", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LeagueCompetitor_LeagueTournament_LeagueTournamentId",
-                        column: x => x.LeagueTournamentId,
-                        principalTable: "LeagueTournament",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_LeagueCompetitor_LeagueTeam_TeamId",
                         column: x => x.TeamId,
                         principalTable: "LeagueTeam",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_LeagueCompetitor_LeagueTournament_TournamentId",
+                        column: x => x.TournamentId,
+                        principalTable: "LeagueTournament",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -119,8 +119,8 @@ namespace TournamentWizard.Migrations
         {
             migrationBuilder.DropTable("LeagueTournamentLines");
             migrationBuilder.DropTable("LeagueCompetitor");
-            migrationBuilder.DropTable("LeagueTournament");
             migrationBuilder.DropTable("LeagueTeam");
+            migrationBuilder.DropTable("LeagueTournament");
             migrationBuilder.DropTable("League");
         }
     }

@@ -13,6 +13,5 @@ namespace TournamentWizard.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual League League { get; set; }
-        public virtual ICollection<LeagueCompetitor> Competitors { get; set; }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Data.Entity;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TournamentWizard.Models;
 using TournamentWizard.Services.Contracts;
 
@@ -7,29 +9,42 @@ namespace TournamentWizard.Services
 {
     public class LeagueTournamentService : ILeagueTournamentService
     {
-        public LeagueTournament Add(LeagueTournament tournament)
+        private AppDbContext database;
+        private List<LeagueTournament> tournaments;
+
+        public LeagueTournamentService()
         {
-            throw new NotImplementedException();
+            database = new AppDbContext();
+            tournaments = database.LeagueTournament.Include(t => t.League).AsNoTracking().ToList();
         }
 
-        public LeagueTournament Delete(int id)
+        public LeagueTournament Add(LeagueTournament tournament)
         {
-            throw new NotImplementedException();
+            database.LeagueTournament.Add(tournament);
+            database.SaveChanges();
+            return tournament;
+        }
+
+        public LeagueTournament Delete(LeagueTournament tournament)
+        {
+            database.LeagueTournament.Remove(tournament);
+            database.SaveChanges();
+            return tournament;
         }
 
         public List<LeagueTournament> Get()
         {
-            throw new NotImplementedException();
+            return tournaments;
         }
 
         public LeagueTournament Get(string name)
         {
-            throw new NotImplementedException();
+            return tournaments.Where(t => t.Name == name).FirstOrDefault();
         }
 
         public LeagueTournament Get(int id)
         {
-            throw new NotImplementedException();
+            return tournaments.Where(t => t.Id == id).FirstOrDefault();
         }
 
         public LeagueTournament Update(LeagueTournament tournament)

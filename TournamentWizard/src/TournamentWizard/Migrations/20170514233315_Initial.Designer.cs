@@ -8,7 +8,7 @@ using TournamentWizard.Models;
 namespace TournamentWizard.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20170514000247_Initial")]
+    [Migration("20170514233315_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,9 +34,9 @@ namespace TournamentWizard.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("LeagueTournamentId");
-
                     b.Property<int?>("TeamId");
+
+                    b.Property<int?>("TournamentId");
 
                     b.HasKey("Id");
                 });
@@ -85,13 +85,13 @@ namespace TournamentWizard.Migrations
 
             modelBuilder.Entity("TournamentWizard.Models.LeagueCompetitor", b =>
                 {
-                    b.HasOne("TournamentWizard.Models.LeagueTournament")
-                        .WithMany()
-                        .HasForeignKey("LeagueTournamentId");
-
                     b.HasOne("TournamentWizard.Models.LeagueTeam")
                         .WithMany()
                         .HasForeignKey("TeamId");
+
+                    b.HasOne("TournamentWizard.Models.LeagueTournament")
+                        .WithMany()
+                        .HasForeignKey("TournamentId");
                 });
 
             modelBuilder.Entity("TournamentWizard.Models.LeagueTeam", b =>

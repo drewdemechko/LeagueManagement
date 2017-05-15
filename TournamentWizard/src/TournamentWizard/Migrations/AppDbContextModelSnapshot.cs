@@ -33,9 +33,9 @@ namespace TournamentWizard.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("LeagueTournamentId");
-
                     b.Property<int?>("TeamId");
+
+                    b.Property<int?>("TournamentId");
 
                     b.HasKey("Id");
                 });
@@ -84,13 +84,13 @@ namespace TournamentWizard.Migrations
 
             modelBuilder.Entity("TournamentWizard.Models.LeagueCompetitor", b =>
                 {
-                    b.HasOne("TournamentWizard.Models.LeagueTournament")
-                        .WithMany()
-                        .HasForeignKey("LeagueTournamentId");
-
                     b.HasOne("TournamentWizard.Models.LeagueTeam")
                         .WithMany()
                         .HasForeignKey("TeamId");
+
+                    b.HasOne("TournamentWizard.Models.LeagueTournament")
+                        .WithMany()
+                        .HasForeignKey("TournamentId");
                 });
 
             modelBuilder.Entity("TournamentWizard.Models.LeagueTeam", b =>

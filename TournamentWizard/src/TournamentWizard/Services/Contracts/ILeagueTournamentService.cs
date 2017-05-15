@@ -11,7 +11,7 @@ namespace TournamentWizard.Services.Contracts
         List<LeagueTournament> Get();
         LeagueTournament Get(int id);
         LeagueTournament Get(string name);
-        LeagueTournament Delete(int id);
+        LeagueTournament Delete(LeagueTournament tournament);
         LeagueTournament Update(LeagueTournament tournament);
         LeagueTournament Add(LeagueTournament tournament);
     }
