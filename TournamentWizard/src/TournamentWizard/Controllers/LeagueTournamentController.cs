@@ -13,11 +13,16 @@ namespace TournamentWizard.Controllers
     {
         private ILeagueTournamentService _leagueTournamentService;
         private ILeagueService _leagueService;
+        private IBracketLayoutService _bracketService;
+        private ICompetitorService _competitorService;
         
-        public LeagueTournamentController(ILeagueTournamentService leagueTournamentService, ILeagueService leagueService)
+        public LeagueTournamentController(ILeagueTournamentService leagueTournamentService, ILeagueService leagueService
+            ,IBracketLayoutService bracketService, ICompetitorService competitorService)
         {
             _leagueTournamentService = leagueTournamentService;
             _leagueService = leagueService;
+            _bracketService = bracketService;
+            _competitorService = competitorService;
         }
 
         [HttpGet]
@@ -51,6 +56,60 @@ namespace TournamentWizard.Controllers
             }
 
             return new JsonResult(tournament);
+        }
+
+        [HttpGet]
+        [Route("{tournamentId}/Bracket")]
+        public ActionResult GetBracketLayout(int tournamentId)
+        {
+            //not a valid id, should only allow integer values
+            if (tournamentId == 0)
+            {
+                return HttpBadRequest("Bracket could not be retreived. Tournament id:" + tournamentId + " is not a valid tournament id.");
+            }
+
+            var tournament = _leagueTournamentService.Get(tournamentId);
+
+            if (tournament == null)
+            {
+                return HttpNotFound("No tournament exists with id:" + tournamentId + ".");
+            }
+
+            var tournamentLines = _bracketService.GetBracketForTournament(tournamentId);
+
+            if (tournamentLines == null)
+            {
+                return HttpNotFound("No bracket has been set up for that tournament.");
+            }
+
+            return new JsonResult(tournamentLines);
+        }
+
+        [HttpGet]
+        [Route("{tournamentId}/Competitors")]
+        public ActionResult GetCompetitors(int tournamentId)
+        {
+            //not a valid id, should only allow integer values
+            if (tournamentId == 0)
+            {
+                return HttpBadRequest("Competitors could not be retreived. Tournament id:" + tournamentId + " is not a valid tournament id.");
+            }
+
+            var tournament = _leagueTournamentService.Get(tournamentId);
+
+            if (tournament == null)
+            {
+                return HttpNotFound("No tournament exists with id:" + tournamentId + ".");
+            }
+
+            var competitors = _competitorService.GetCompetitorsForTournament(tournamentId);
+
+            if (competitors == null)
+            {
+                return HttpNotFound("There are no competitors for that tournament.");
+            }
+
+            return new JsonResult(competitors);
         }
 
         [HttpPost]

@@ -46,6 +46,8 @@ namespace TournamentWizard
             services.AddScoped<ILeagueTournamentService, LeagueTournamentService>();
             services.AddScoped<ILeagueService, LeagueService>();
             services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<ICompetitorService, CompetitorService>();
+            services.AddScoped<IBracketLayoutService, BracketLayoutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +70,7 @@ namespace TournamentWizard
 
             app.UseIISPlatformHandler(options =>
                                       options.AuthenticationDescriptions.Clear());
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseGlimpse();
 

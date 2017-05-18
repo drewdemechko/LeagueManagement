@@ -13,5 +13,6 @@ namespace TournamentWizard.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual League League { get; set; }
+        public DateTime? Created { get; set; }
     }
 }

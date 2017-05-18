@@ -39,6 +39,6 @@ namespace TournamentWizard.Models
         public DbSet<LeagueTournament> LeagueTournament { get; set; }
         public DbSet<LeagueCompetitor> LeagueCompetitor { get; set; }
         public DbSet<LeagueTeam> LeagueTeam { get; set; }
-        public DbSet<LeagueTournamentLines> LeagueTournamentLines { get; set; }
+        public DbSet<LeagueTournamentLine> LeagueTournamentLines { get; set; }
     }
 }
