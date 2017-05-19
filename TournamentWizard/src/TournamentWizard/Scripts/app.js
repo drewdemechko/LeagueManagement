@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('moviesApp', [
-        'moviesServices'
+    angular.module('tournamentsApp', [
+        'leaguesServices'
     ]);
 })();

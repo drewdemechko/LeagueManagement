@@ -9,7 +9,7 @@ using TournamentWizard.Services.Contracts;
 
 namespace TournamentWizard.Controllers
 {
-    [Route("api/League")]
+    [Route("api/Leagues")]
     public class LeagueController : Controller
     {
         private ILeagueService _leagueService;
