@@ -5,10 +5,16 @@
         .module('tournamentsApp')
         .controller('leaguesController', leaguesController);
 
-    leaguesController.$inject = ['$scope', 'Leagues', 'League'];
+    leaguesController.$inject = ['$scope', 'Leagues'];
 
-    function leaguesController($scope, Leagues, League) {
-        $scope.leagues = League.query();
-        var league = League.get({ id: 1 }, function () { console.log(league); });
+    function leaguesController($scope, Leagues) {
+        $scope.leagues = Leagues.query();
+        var leagues = function () {
+            return Leagues.query();
+        };
+
+        var league = function (id) {
+            Leagues.get({ id: id }, function () { console.log(league); })
+        };
     }
 })();

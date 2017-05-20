@@ -2,6 +2,6 @@
     'use strict';
 
     angular.module('tournamentsApp', [
-        'leaguesServices'
+        'leagueService', 'tournamentService', 'teamService', 'competitorService', 'bracketLayoutService'
     ]);
 })();
