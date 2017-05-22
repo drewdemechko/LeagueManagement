@@ -1,10 +1,14 @@
 ﻿(function () {
     'use strict';
 
-    var leaguesService = angular.module('leagueService', ['ngResource']);
+    var leagueService = angular.module('leagueService', ['ngResource']);
 
-    leaguesService.factory('Leagues', ['$resource',
+    leagueService.factory('Leagues', ['$resource',
         function ($resource) {
             return $resource('/api/Leagues/:id');
+        }]);
+    leagueService.factory('LeaguesTeams', ['$resource',
+        function ($resource) {
+            return $resource('/api/Leagues/:leagueId/Teams');
         }]);
 })();
